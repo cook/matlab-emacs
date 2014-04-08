@@ -301,6 +301,11 @@ This overcomes situations where the `fill-column' plus the
   :group 'matlab
   :type 'integer)
 
+(defcustom matlab-default-fill-column 80
+  "Used to init `fill-column'."
+  :group 'matlab
+  :type 'integer)
+
 (defcustom matlab-elipsis-string "..."
   "Text used to perform continuation on code lines.
 This is used to generate and identify continuation lines.")
@@ -1168,7 +1173,7 @@ All Key Bindings:
   (make-local-variable 'comment-start)
   (setq comment-start "%")
   (make-local-variable 'page-delimiter)
-  (setq page-delimiter "^\\(\f\\|%% \\)")
+  (setq page-delimiter "^\\(\f\\|%%\\(\\s-\\|\n\\)\\)")
   (make-local-variable 'comment-column)
   (setq comment-column matlab-comment-column)
   (make-local-variable 'comment-indent-function)
@@ -1176,7 +1181,7 @@ All Key Bindings:
   (make-local-variable 'add-log-current-defun-function)
   (setq add-log-current-defun-function 'matlab-current-defun)
   (make-local-variable 'fill-column)
-  (setq fill-column default-fill-column)
+  (setq fill-column matlab-default-fill-column)
   (make-local-variable 'auto-fill-function)
   (if matlab-auto-fill (setq auto-fill-function 'matlab-auto-fill))
   ;; Emacs 20 supports this variable.  This lets users turn auto-fill
